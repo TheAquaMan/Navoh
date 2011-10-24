@@ -37,19 +37,19 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: gstream_cpp_test
+all: network_server_libxml2_cpp
 
 # Tool invocations
-gstream_cpp_test: $(OBJS) $(USER_OBJS)
+network_server_libxml2_cpp: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C++ Linker'
-	g++  -o "gstream_cpp_test" $(OBJS) $(USER_OBJS) $(LIBS)
+	g++  -o "network_server_libxml2_cpp" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(OBJS)$(C++_DEPS)$(C_DEPS)$(CC_DEPS)$(CPP_DEPS)$(EXECUTABLES)$(CXX_DEPS)$(C_UPPER_DEPS) gstream_cpp_test
+	-$(RM) $(OBJS)$(C++_DEPS)$(C_DEPS)$(CC_DEPS)$(CPP_DEPS)$(EXECUTABLES)$(CXX_DEPS)$(C_UPPER_DEPS) network_server_libxml2_cpp
 	-@echo ' '
 
 .PHONY: all clean dependents

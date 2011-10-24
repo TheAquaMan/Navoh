@@ -23,9 +23,11 @@ void GstPlayerBase::Stop()
 
 bool GstPlayerBase::on_bus_Message(const Glib::RefPtr<Gst::Bus>& bus, const Glib::RefPtr<Gst::Message>& message)
 {
+	cout << "message" << endl;
 	switch (message->get_message_type())
 	{
 	case Gst::MESSAGE_EOS:
+		cout << "EOS" << endl;
 		Stop();
 		break;
 	case Gst::MESSAGE_ERROR:

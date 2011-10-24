@@ -20,7 +20,7 @@ GstOggPlayer::GstOggPlayer(const string& fileName) : m_Filename(fileName)
 
 GstOggPlayer::~GstOggPlayer()
 {
-	pipeline->set_state(Gst::STATE_NULL);
+	Stop();
 }
 
 void GstOggPlayer::SetFile(const string& fileName)
@@ -50,7 +50,7 @@ void GstOggPlayer::Init()
 
 	Glib::RefPtr<Gst::Bus> bus = pipeline->get_bus();
 
-	bus->add_watch(sigc::mem_fun(*this, &GstPlayerBase::on_bus_Message));
+	bus->add_watch(sigc::mem_fun(*this, &GstOggPlayer::on_bus_Message));
 
 	pipeline->add(source)->add(parser)->add(decoder)->add(conv)->add(sink);
 

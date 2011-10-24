@@ -1,9 +1,8 @@
-main.d main.o: ../main.cpp /usr/include/gstreamermm-0.10/gstreamermm.h \
- /usr/include/gstreamermm-0.10/gstreamermm/init.h \
- /usr/include/glibmm-2.4/glibmm/error.h \
- /usr/lib/glibmm-2.4/include/glibmmconfig.h \
- /usr/include/glibmm-2.4/glibmm/exception.h \
+main.d main.o: ../main.cpp /usr/include/libxml++-2.6/libxml++/libxml++.h \
+ /usr/include/libxml++-2.6/libxml++/exceptions/internal_error.h \
+ /usr/include/libxml++-2.6/libxml++/exceptions/exception.h \
  /usr/include/glibmm-2.4/glibmm/ustring.h \
+ /usr/lib/glibmm-2.4/include/glibmmconfig.h \
  /usr/include/glibmm-2.4/glibmm/unicode.h /usr/include/glib-2.0/glib.h \
  /usr/include/glib-2.0/glib/galloca.h /usr/include/glib-2.0/glib/gtypes.h \
  /usr/lib/glib-2.0/include/glibconfig.h \
@@ -49,6 +48,31 @@ main.d main.o: ../main.cpp /usr/include/gstreamermm-0.10/gstreamermm.h \
  /usr/include/glib-2.0/glib/gurifuncs.h \
  /usr/include/glib-2.0/glib/gvarianttype.h \
  /usr/include/glib-2.0/glib/gvariant.h \
+ /usr/lib/libxml++-2.6/include/libxml++config.h \
+ /usr/include/libxml++-2.6/libxml++/exceptions/parse_error.h \
+ /usr/include/libxml++-2.6/libxml++/parsers/domparser.h \
+ /usr/include/libxml++-2.6/libxml++/parsers/parser.h \
+ /usr/include/libxml++-2.6/libxml++/nodes/element.h \
+ /usr/include/libxml++-2.6/libxml++/nodes/node.h \
+ /usr/include/libxml++-2.6/libxml++/noncopyable.h \
+ /usr/include/libxml++-2.6/libxml++/attribute.h \
+ /usr/include/libxml++-2.6/libxml++/nodes/commentnode.h \
+ /usr/include/libxml++-2.6/libxml++/nodes/contentnode.h \
+ /usr/include/libxml++-2.6/libxml++/exceptions/validity_error.h \
+ /usr/include/libxml++-2.6/libxml++/dtd.h \
+ /usr/include/libxml++-2.6/libxml++/document.h \
+ /usr/include/libxml++-2.6/libxml++/parsers/saxparser.h \
+ /usr/include/libxml++-2.6/libxml++/parsers/textreader.h \
+ /usr/include/libxml++-2.6/libxml++/nodes/entityreference.h \
+ /usr/include/libxml++-2.6/libxml++/nodes/textnode.h \
+ /usr/include/libxml++-2.6/libxml++/validators/validator.h \
+ /usr/include/libxml++-2.6/libxml++/validators/dtdvalidator.h \
+ /usr/include/libxml++-2.6/libxml++/validators/schemavalidator.h \
+ /usr/include/libxml++-2.6/libxml++/schema.h ../GstOggPlayer.h \
+ ../GstPlayerBase.h /usr/include/gstreamermm-0.10/gstreamermm.h \
+ /usr/include/gstreamermm-0.10/gstreamermm/init.h \
+ /usr/include/glibmm-2.4/glibmm/error.h \
+ /usr/include/glibmm-2.4/glibmm/exception.h \
  /usr/include/glibmm-2.4/glibmm/optiongroup.h \
  /usr/include/gstreamermm-0.10/gstreamermm/version.h \
  /usr/include/gstreamermm-0.10/gstreamermm/bin.h \
@@ -204,10 +228,6 @@ main.d main.o: ../main.cpp /usr/include/gstreamermm-0.10/gstreamermm.h \
  /usr/include/gstreamer-0.10/gst/gstindex.h \
  /usr/include/gstreamer-0.10/gst/gstindexfactory.h \
  /usr/include/gstreamermm-0.10/gstreamermm/object.h \
- /usr/include/libxml++-2.6/libxml++/nodes/node.h \
- /usr/include/libxml++-2.6/libxml++/noncopyable.h \
- /usr/include/libxml++-2.6/libxml++/exceptions/exception.h \
- /usr/lib/libxml++-2.6/include/libxml++config.h \
  /usr/include/gstreamermm-0.10/gstreamermm/clock.h \
  /usr/include/gstreamermm-0.10/gstreamermm/enums.h \
  /usr/include/gstreamermm-0.10/gstreamermm/error.h \
@@ -277,14 +297,6 @@ main.d main.o: ../main.cpp /usr/include/gstreamermm-0.10/gstreamermm.h \
  /usr/include/gstreamermm-0.10/gstreamermm/typefindfactory.h \
  /usr/include/gstreamermm-0.10/gstreamermm/urihandler.h \
  /usr/include/gstreamermm-0.10/gstreamermm/xml.h \
- /usr/include/libxml++-2.6/libxml++/document.h \
- /usr/include/libxml++-2.6/libxml++/exceptions/parse_error.h \
- /usr/include/libxml++-2.6/libxml++/exceptions/internal_error.h \
- /usr/include/libxml++-2.6/libxml++/nodes/element.h \
- /usr/include/libxml++-2.6/libxml++/attribute.h \
- /usr/include/libxml++-2.6/libxml++/nodes/commentnode.h \
- /usr/include/libxml++-2.6/libxml++/nodes/contentnode.h \
- /usr/include/libxml++-2.6/libxml++/dtd.h \
  /usr/include/gstreamermm-0.10/gstreamermm/basesink.h \
  /usr/include/gstreamer-0.10/gst/base/gstbasesink.h \
  /usr/include/gstreamermm-0.10/gstreamermm/basesrc.h \
@@ -482,20 +494,17 @@ main.d main.o: ../main.cpp /usr/include/gstreamermm-0.10/gstreamermm.h \
  /usr/include/gstreamermm-0.10/gstreamermm/vorbisparse.h \
  /usr/include/gstreamermm-0.10/gstreamermm/vorbistag.h \
  /usr/include/gstreamermm-0.10/gstreamermm/ximagesink.h \
- /usr/include/gstreamermm-0.10/gstreamermm/xvimagesink.h \
- ../GstOggPlayer.h ../GstPlayerBase.h
+ /usr/include/gstreamermm-0.10/gstreamermm/xvimagesink.h
 
-/usr/include/gstreamermm-0.10/gstreamermm.h:
+/usr/include/libxml++-2.6/libxml++/libxml++.h:
 
-/usr/include/gstreamermm-0.10/gstreamermm/init.h:
+/usr/include/libxml++-2.6/libxml++/exceptions/internal_error.h:
 
-/usr/include/glibmm-2.4/glibmm/error.h:
-
-/usr/lib/glibmm-2.4/include/glibmmconfig.h:
-
-/usr/include/glibmm-2.4/glibmm/exception.h:
+/usr/include/libxml++-2.6/libxml++/exceptions/exception.h:
 
 /usr/include/glibmm-2.4/glibmm/ustring.h:
+
+/usr/lib/glibmm-2.4/include/glibmmconfig.h:
 
 /usr/include/glibmm-2.4/glibmm/unicode.h:
 
@@ -620,6 +629,60 @@ main.d main.o: ../main.cpp /usr/include/gstreamermm-0.10/gstreamermm.h \
 /usr/include/glib-2.0/glib/gvarianttype.h:
 
 /usr/include/glib-2.0/glib/gvariant.h:
+
+/usr/lib/libxml++-2.6/include/libxml++config.h:
+
+/usr/include/libxml++-2.6/libxml++/exceptions/parse_error.h:
+
+/usr/include/libxml++-2.6/libxml++/parsers/domparser.h:
+
+/usr/include/libxml++-2.6/libxml++/parsers/parser.h:
+
+/usr/include/libxml++-2.6/libxml++/nodes/element.h:
+
+/usr/include/libxml++-2.6/libxml++/nodes/node.h:
+
+/usr/include/libxml++-2.6/libxml++/noncopyable.h:
+
+/usr/include/libxml++-2.6/libxml++/attribute.h:
+
+/usr/include/libxml++-2.6/libxml++/nodes/commentnode.h:
+
+/usr/include/libxml++-2.6/libxml++/nodes/contentnode.h:
+
+/usr/include/libxml++-2.6/libxml++/exceptions/validity_error.h:
+
+/usr/include/libxml++-2.6/libxml++/dtd.h:
+
+/usr/include/libxml++-2.6/libxml++/document.h:
+
+/usr/include/libxml++-2.6/libxml++/parsers/saxparser.h:
+
+/usr/include/libxml++-2.6/libxml++/parsers/textreader.h:
+
+/usr/include/libxml++-2.6/libxml++/nodes/entityreference.h:
+
+/usr/include/libxml++-2.6/libxml++/nodes/textnode.h:
+
+/usr/include/libxml++-2.6/libxml++/validators/validator.h:
+
+/usr/include/libxml++-2.6/libxml++/validators/dtdvalidator.h:
+
+/usr/include/libxml++-2.6/libxml++/validators/schemavalidator.h:
+
+/usr/include/libxml++-2.6/libxml++/schema.h:
+
+../GstOggPlayer.h:
+
+../GstPlayerBase.h:
+
+/usr/include/gstreamermm-0.10/gstreamermm.h:
+
+/usr/include/gstreamermm-0.10/gstreamermm/init.h:
+
+/usr/include/glibmm-2.4/glibmm/error.h:
+
+/usr/include/glibmm-2.4/glibmm/exception.h:
 
 /usr/include/glibmm-2.4/glibmm/optiongroup.h:
 
@@ -937,14 +1000,6 @@ main.d main.o: ../main.cpp /usr/include/gstreamermm-0.10/gstreamermm.h \
 
 /usr/include/gstreamermm-0.10/gstreamermm/object.h:
 
-/usr/include/libxml++-2.6/libxml++/nodes/node.h:
-
-/usr/include/libxml++-2.6/libxml++/noncopyable.h:
-
-/usr/include/libxml++-2.6/libxml++/exceptions/exception.h:
-
-/usr/lib/libxml++-2.6/include/libxml++config.h:
-
 /usr/include/gstreamermm-0.10/gstreamermm/clock.h:
 
 /usr/include/gstreamermm-0.10/gstreamermm/enums.h:
@@ -1082,22 +1137,6 @@ main.d main.o: ../main.cpp /usr/include/gstreamermm-0.10/gstreamermm.h \
 /usr/include/gstreamermm-0.10/gstreamermm/urihandler.h:
 
 /usr/include/gstreamermm-0.10/gstreamermm/xml.h:
-
-/usr/include/libxml++-2.6/libxml++/document.h:
-
-/usr/include/libxml++-2.6/libxml++/exceptions/parse_error.h:
-
-/usr/include/libxml++-2.6/libxml++/exceptions/internal_error.h:
-
-/usr/include/libxml++-2.6/libxml++/nodes/element.h:
-
-/usr/include/libxml++-2.6/libxml++/attribute.h:
-
-/usr/include/libxml++-2.6/libxml++/nodes/commentnode.h:
-
-/usr/include/libxml++-2.6/libxml++/nodes/contentnode.h:
-
-/usr/include/libxml++-2.6/libxml++/dtd.h:
 
 /usr/include/gstreamermm-0.10/gstreamermm/basesink.h:
 
@@ -1500,7 +1539,3 @@ main.d main.o: ../main.cpp /usr/include/gstreamermm-0.10/gstreamermm.h \
 /usr/include/gstreamermm-0.10/gstreamermm/ximagesink.h:
 
 /usr/include/gstreamermm-0.10/gstreamermm/xvimagesink.h:
-
-../GstOggPlayer.h:
-
-../GstPlayerBase.h:
