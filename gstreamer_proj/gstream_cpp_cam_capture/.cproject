@@ -113,22 +113,29 @@
 							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.release.1814431006" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.release">
 								<option id="gnu.cpp.compiler.exe.release.option.optimization.level.178280526" name="Optimization Level" superClass="gnu.cpp.compiler.exe.release.option.optimization.level" value="gnu.cpp.compiler.optimization.level.most" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.exe.release.option.debugging.level.139315487" name="Debug Level" superClass="gnu.cpp.compiler.exe.release.option.debugging.level" value="gnu.cpp.compiler.debugging.level.none" valueType="enumerated"/>
-								<option id="gnu.cpp.compiler.option.other.other.1850339490" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="/usr/include/gtk-2.0 /usr/lib/gtk-2.0/include /usr/include/atk-1.0 /usr/include/cairo /usr/include/pango-1.0 /usr/include/gio-unix-2.0/ /usr/include/glib-2.0 /usr/lib/glib-2.0/include /usr/include/pixman-1 /usr/include/freetype2 /usr/include/directfb /usr/include/libpng12  -c -fmessage-length=0" valueType="string"/>
+								<option id="gnu.cpp.compiler.option.other.other.1850339490" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="/usr/include/gtk-2.0 /usr/lib/gtk-2.0/include /usr/include/atk-1.0 /usr/include/cairo /usr/include/pango-1.0 /usr/include/gio-unix-2.0/ /usr/include/glib-2.0 /usr/lib/glib-2.0/include /usr/include/pixman-1 /usr/include/freetype2 /usr/include/directfb /usr/include/libpng12  -c -fmessage-length=0 -D_REENTRANT -pthread" valueType="string"/>
 								<option id="gnu.cpp.compiler.option.include.paths.1196164622" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="/usr/include/cairomm-1.0"/>
+									<listOptionValue builtIn="false" value="/usr/lib/cairomm-1.0/include"/>
+									<listOptionValue builtIn="false" value="/usr/include/cairo"/>
+									<listOptionValue builtIn="false" value="/usr/include/sigc++-2.0"/>
+									<listOptionValue builtIn="false" value="/usr/lib/sigc++-2.0/include"/>
+									<listOptionValue builtIn="false" value="/usr/include/pixman-1"/>
+									<listOptionValue builtIn="false" value="/usr/include/freetype2"/>
+									<listOptionValue builtIn="false" value="/usr/include/directfb"/>
+									<listOptionValue builtIn="false" value="/usr/include/libpng12"/>
+									<listOptionValue builtIn="false" value="/usr/include/gstreamer-0.10"/>
+									<listOptionValue builtIn="false" value="/usr/include/glib-2.0"/>
+									<listOptionValue builtIn="false" value="/usr/lib/glib-2.0/include"/>
+									<listOptionValue builtIn="false" value="/usr/include/libxml2"/>
 									<listOptionValue builtIn="false" value="/usr/include/gstreamermm-0.10"/>
 									<listOptionValue builtIn="false" value="/usr/lib/gstreamermm-0.10/include"/>
 									<listOptionValue builtIn="false" value="/usr/include/giomm-2.4"/>
 									<listOptionValue builtIn="false" value="/usr/lib/giomm-2.4/include"/>
 									<listOptionValue builtIn="false" value="/usr/include/libxml++-2.6"/>
 									<listOptionValue builtIn="false" value="/usr/lib/libxml++-2.6/include"/>
-									<listOptionValue builtIn="false" value="/usr/include/gstreamer-0.10"/>
 									<listOptionValue builtIn="false" value="/usr/include/glibmm-2.4"/>
 									<listOptionValue builtIn="false" value="/usr/lib/glibmm-2.4/include"/>
-									<listOptionValue builtIn="false" value="/usr/include/glib-2.0"/>
-									<listOptionValue builtIn="false" value="/usr/lib/glib-2.0/include"/>
-									<listOptionValue builtIn="false" value="/usr/include/sigc++-2.0"/>
-									<listOptionValue builtIn="false" value="/usr/lib/sigc++-2.0/include"/>
-									<listOptionValue builtIn="false" value="/usr/include/libxml2"/>
 									<listOptionValue builtIn="false" value="/usr/include/gtkmm-2.4"/>
 									<listOptionValue builtIn="false" value="/usr/lib/gtkmm-2.4/include"/>
 									<listOptionValue builtIn="false" value="/usr/include/pangomm-1.4"/>
@@ -138,14 +145,7 @@
 									<listOptionValue builtIn="false" value="/usr/include/atkmm-1.6"/>
 									<listOptionValue builtIn="false" value="/usr/include/gdkmm-2.4"/>
 									<listOptionValue builtIn="false" value="/usr/lib/gdkmm-2.4/include"/>
-									<listOptionValue builtIn="false" value="/usr/include/cairomm-1.0"/>
-									<listOptionValue builtIn="false" value="/usr/lib/cairomm-1.0/include"/>
 									<listOptionValue builtIn="false" value="/usr/include/pango-1.0"/>
-									<listOptionValue builtIn="false" value="/usr/include/cairo"/>
-									<listOptionValue builtIn="false" value="/usr/include/pixman-1"/>
-									<listOptionValue builtIn="false" value="/usr/include/freetype2"/>
-									<listOptionValue builtIn="false" value="/usr/include/directfb"/>
-									<listOptionValue builtIn="false" value="/usr/include/libpng12"/>
 									<listOptionValue builtIn="false" value="/usr/lib/gtk-2.0/include"/>
 									<listOptionValue builtIn="false" value="/usr/include/atk-1.0"/>
 									<listOptionValue builtIn="false" value="/usr/include/gio-unix-2.0/"/>
@@ -155,12 +155,91 @@
 							<tool id="cdt.managedbuild.tool.gnu.c.compiler.exe.release.481528811" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.exe.release">
 								<option defaultValue="gnu.c.optimization.level.most" id="gnu.c.compiler.exe.release.option.optimization.level.308914608" name="Optimization Level" superClass="gnu.c.compiler.exe.release.option.optimization.level" valueType="enumerated"/>
 								<option id="gnu.c.compiler.exe.release.option.debugging.level.295826020" name="Debug Level" superClass="gnu.c.compiler.exe.release.option.debugging.level" value="gnu.c.debugging.level.none" valueType="enumerated"/>
+								<option id="gnu.c.compiler.option.include.paths.1980453810" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="/usr/include/cairomm-1.0"/>
+									<listOptionValue builtIn="false" value="/usr/lib/cairomm-1.0/include"/>
+									<listOptionValue builtIn="false" value="/usr/include/cairo"/>
+									<listOptionValue builtIn="false" value="/usr/include/sigc++-2.0"/>
+									<listOptionValue builtIn="false" value="/usr/lib/sigc++-2.0/include"/>
+									<listOptionValue builtIn="false" value="/usr/include/pixman-1"/>
+									<listOptionValue builtIn="false" value="/usr/include/freetype2"/>
+									<listOptionValue builtIn="false" value="/usr/include/directfb"/>
+									<listOptionValue builtIn="false" value="/usr/include/libpng12"/>
+									<listOptionValue builtIn="false" value="/usr/include/gstreamer-0.10"/>
+									<listOptionValue builtIn="false" value="/usr/include/glib-2.0"/>
+									<listOptionValue builtIn="false" value="/usr/lib/glib-2.0/include"/>
+									<listOptionValue builtIn="false" value="/usr/include/libxml2"/>
+									<listOptionValue builtIn="false" value="/usr/include/gstreamermm-0.10"/>
+									<listOptionValue builtIn="false" value="/usr/lib/gstreamermm-0.10/include"/>
+									<listOptionValue builtIn="false" value="/usr/include/giomm-2.4"/>
+									<listOptionValue builtIn="false" value="/usr/lib/giomm-2.4/include"/>
+									<listOptionValue builtIn="false" value="/usr/include/libxml++-2.6"/>
+									<listOptionValue builtIn="false" value="/usr/lib/libxml++-2.6/include"/>
+									<listOptionValue builtIn="false" value="/usr/include/glibmm-2.4"/>
+									<listOptionValue builtIn="false" value="/usr/lib/glibmm-2.4/include"/>
+									<listOptionValue builtIn="false" value="/usr/include/gtkmm-2.4"/>
+									<listOptionValue builtIn="false" value="/usr/lib/gtkmm-2.4/include"/>
+									<listOptionValue builtIn="false" value="/usr/include/pangomm-1.4"/>
+									<listOptionValue builtIn="false" value="/usr/lib/pangomm-1.4/include"/>
+									<listOptionValue builtIn="false" value="/usr/include/gtk-2.0"/>
+									<listOptionValue builtIn="false" value="/usr/include/gtk-unix-print-2.0"/>
+									<listOptionValue builtIn="false" value="/usr/include/atkmm-1.6"/>
+									<listOptionValue builtIn="false" value="/usr/include/gdkmm-2.4"/>
+									<listOptionValue builtIn="false" value="/usr/lib/gdkmm-2.4/include"/>
+									<listOptionValue builtIn="false" value="/usr/include/pango-1.0"/>
+									<listOptionValue builtIn="false" value="/usr/lib/gtk-2.0/include"/>
+									<listOptionValue builtIn="false" value="/usr/include/atk-1.0"/>
+									<listOptionValue builtIn="false" value="/usr/include/gio-unix-2.0/"/>
+								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.715649380" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.release.1794444656" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.release"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.release.509436482" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.release">
-								<option id="gnu.cpp.link.option.flags.554763893" name="Linker flags" superClass="gnu.cpp.link.option.flags" value="$(shell pkg-config gtkmm-2.4 gstreamermm-0.10 gstreamer-app-0.10 --libs)" valueType="string"/>
+								<option id="gnu.cpp.link.option.flags.554763893" name="Linker flags" superClass="gnu.cpp.link.option.flags" value="" valueType="string"/>
 								<option id="gnu.cpp.link.option.libs.76351497" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
+									<listOptionValue builtIn="false" value="cairomm-1.0"/>
+									<listOptionValue builtIn="false" value="cairo"/>
+									<listOptionValue builtIn="false" value="sigc-2.0"/>
+									<listOptionValue builtIn="false" value="gstapp-0.10"/>
+									<listOptionValue builtIn="false" value="gstbase-0.10"/>
+									<listOptionValue builtIn="false" value="gstreamer-0.10"/>
+									<listOptionValue builtIn="false" value="gobject-2.0"/>
+									<listOptionValue builtIn="false" value="gmodule-2.0"/>
+									<listOptionValue builtIn="false" value="xml2"/>
+									<listOptionValue builtIn="false" value="gthread-2.0"/>
+									<listOptionValue builtIn="false" value="rt"/>
+									<listOptionValue builtIn="false" value="glib-2.0"/>
+									<listOptionValue builtIn="false" value="gstreamermm-0.10"/>
+									<listOptionValue builtIn="false" value="giomm-2.4"/>
+									<listOptionValue builtIn="false" value="xml++-2.6"/>
+									<listOptionValue builtIn="false" value="gstcontroller-0.10"/>
+									<listOptionValue builtIn="false" value="gstdataprotocol-0.10"/>
+									<listOptionValue builtIn="false" value="gstnet-0.10"/>
+									<listOptionValue builtIn="false" value="gstaudio-0.10"/>
+									<listOptionValue builtIn="false" value="gstcdda-0.10"/>
+									<listOptionValue builtIn="false" value="gstnetbuffer-0.10"/>
+									<listOptionValue builtIn="false" value="gstrtp-0.10"/>
+									<listOptionValue builtIn="false" value="gstvideo-0.10"/>
+									<listOptionValue builtIn="false" value="gio-2.0"/>
+									<listOptionValue builtIn="false" value="glibmm-2.4"/>
+									<listOptionValue builtIn="false" value="gstinterfaces-0.10"/>
+									<listOptionValue builtIn="false" value="gsttag-0.10"/>
+									<listOptionValue builtIn="false" value="gtkmm-2.4"/>
+									<listOptionValue builtIn="false" value="atkmm-1.6"/>
+									<listOptionValue builtIn="false" value="gdkmm-2.4"/>
+									<listOptionValue builtIn="false" value="pangomm-1.4"/>
+									<listOptionValue builtIn="false" value="gtk-x11-2.0"/>
+									<listOptionValue builtIn="false" value="gdk-x11-2.0"/>
+									<listOptionValue builtIn="false" value="atk-1.0"/>
+									<listOptionValue builtIn="false" value="pangoft2-1.0"/>
+									<listOptionValue builtIn="false" value="gdk_pixbuf-2.0"/>
+									<listOptionValue builtIn="false" value="m"/>
+									<listOptionValue builtIn="false" value="pangocairo-1.0"/>
+									<listOptionValue builtIn="false" value="pango-1.0"/>
+									<listOptionValue builtIn="false" value="freetype"/>
+									<listOptionValue builtIn="false" value="fontconfig"/>
+									<listOptionValue builtIn="false" value="boost_thread"/>
+									<listOptionValue builtIn="false" value="boost_system"/>
 									<listOptionValue builtIn="false" value="dmtx"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.2048437085" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
@@ -175,7 +254,126 @@
 					</folderInfo>
 				</configuration>
 			</storageModule>
-			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings">
+				<externalSettings containerId="org.eclipse.cdt.managedbuilder.pkgconfig.extSettings" factoryId="org.eclipse.cdt.core.extension.container.factory">
+					<externalSetting contentTypes="org.eclipse.cdt.managedbuilder.core.compiledObjectFile">
+						<entry flags="" kind="libraryFile" name="cairomm-1.0"/>
+						<entry flags="" kind="libraryFile" name="cairo"/>
+						<entry flags="" kind="libraryFile" name="sigc-2.0"/>
+						<entry flags="" kind="libraryFile" name="gstapp-0.10"/>
+						<entry flags="" kind="libraryFile" name="gstbase-0.10"/>
+						<entry flags="" kind="libraryFile" name="gstreamer-0.10"/>
+						<entry flags="" kind="libraryFile" name="gobject-2.0"/>
+						<entry flags="" kind="libraryFile" name="gmodule-2.0"/>
+						<entry flags="" kind="libraryFile" name="xml2"/>
+						<entry flags="" kind="libraryFile" name="gthread-2.0"/>
+						<entry flags="" kind="libraryFile" name="rt"/>
+						<entry flags="" kind="libraryFile" name="glib-2.0"/>
+						<entry flags="" kind="libraryFile" name="gstreamermm-0.10"/>
+						<entry flags="" kind="libraryFile" name="giomm-2.4"/>
+						<entry flags="" kind="libraryFile" name="xml++-2.6"/>
+						<entry flags="" kind="libraryFile" name="gstcontroller-0.10"/>
+						<entry flags="" kind="libraryFile" name="gstdataprotocol-0.10"/>
+						<entry flags="" kind="libraryFile" name="gstnet-0.10"/>
+						<entry flags="" kind="libraryFile" name="gstaudio-0.10"/>
+						<entry flags="" kind="libraryFile" name="gstcdda-0.10"/>
+						<entry flags="" kind="libraryFile" name="gstnetbuffer-0.10"/>
+						<entry flags="" kind="libraryFile" name="gstrtp-0.10"/>
+						<entry flags="" kind="libraryFile" name="gstvideo-0.10"/>
+						<entry flags="" kind="libraryFile" name="gio-2.0"/>
+						<entry flags="" kind="libraryFile" name="glibmm-2.4"/>
+						<entry flags="" kind="libraryFile" name="gstinterfaces-0.10"/>
+						<entry flags="" kind="libraryFile" name="gsttag-0.10"/>
+						<entry flags="" kind="libraryFile" name="gtkmm-2.4"/>
+						<entry flags="" kind="libraryFile" name="atkmm-1.6"/>
+						<entry flags="" kind="libraryFile" name="gdkmm-2.4"/>
+						<entry flags="" kind="libraryFile" name="pangomm-1.4"/>
+						<entry flags="" kind="libraryFile" name="gtk-x11-2.0"/>
+						<entry flags="" kind="libraryFile" name="gdk-x11-2.0"/>
+						<entry flags="" kind="libraryFile" name="atk-1.0"/>
+						<entry flags="" kind="libraryFile" name="pangoft2-1.0"/>
+						<entry flags="" kind="libraryFile" name="gdk_pixbuf-2.0"/>
+						<entry flags="" kind="libraryFile" name="m"/>
+						<entry flags="" kind="libraryFile" name="pangocairo-1.0"/>
+						<entry flags="" kind="libraryFile" name="pango-1.0"/>
+						<entry flags="" kind="libraryFile" name="freetype"/>
+						<entry flags="" kind="libraryFile" name="fontconfig"/>
+					</externalSetting>
+					<externalSetting contentTypes="org.eclipse.cdt.core.cxxSource">
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/cairomm-1.0"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/lib/cairomm-1.0/include"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/cairo"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/sigc++-2.0"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/lib/sigc++-2.0/include"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/pixman-1"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/freetype2"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/directfb"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/libpng12"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/gstreamer-0.10"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/glib-2.0"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/lib/glib-2.0/include"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/libxml2"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/gstreamermm-0.10"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/lib/gstreamermm-0.10/include"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/giomm-2.4"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/lib/giomm-2.4/include"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/libxml++-2.6"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/lib/libxml++-2.6/include"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/glibmm-2.4"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/lib/glibmm-2.4/include"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/gtkmm-2.4"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/lib/gtkmm-2.4/include"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/pangomm-1.4"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/lib/pangomm-1.4/include"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/gtk-2.0"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/gtk-unix-print-2.0"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/atkmm-1.6"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/gdkmm-2.4"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/lib/gdkmm-2.4/include"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/pango-1.0"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/lib/gtk-2.0/include"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/atk-1.0"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/gio-unix-2.0/"/>
+					</externalSetting>
+					<externalSetting contentTypes="org.eclipse.cdt.core.cSource">
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/cairomm-1.0"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/lib/cairomm-1.0/include"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/cairo"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/sigc++-2.0"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/lib/sigc++-2.0/include"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/pixman-1"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/freetype2"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/directfb"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/libpng12"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/gstreamer-0.10"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/glib-2.0"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/lib/glib-2.0/include"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/libxml2"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/gstreamermm-0.10"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/lib/gstreamermm-0.10/include"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/giomm-2.4"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/lib/giomm-2.4/include"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/libxml++-2.6"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/lib/libxml++-2.6/include"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/glibmm-2.4"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/lib/glibmm-2.4/include"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/gtkmm-2.4"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/lib/gtkmm-2.4/include"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/pangomm-1.4"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/lib/pangomm-1.4/include"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/gtk-2.0"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/gtk-unix-print-2.0"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/atkmm-1.6"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/gdkmm-2.4"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/lib/gdkmm-2.4/include"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/pango-1.0"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/lib/gtk-2.0/include"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/atk-1.0"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/gio-unix-2.0/"/>
+					</externalSetting>
+				</externalSettings>
+			</storageModule>
+			<storageModule Qt3Support="false" QtAssistantClient="false" QtCLucene="false" QtCore="false" QtDBus="false" QtDesigner="false" QtDesignerComponents="false" QtGui="false" QtHelp="false" QtMultimedia="false" QtNetwork="false" QtOpenGL="false" QtScript="false" QtScriptTools="false" QtSql="false" QtSvg="false" QtTest="false" QtUiTools="false" QtWebKit="false" QtXml="false" QtXmlPatterns="false" atk="false" atkmm-1.6="false" cairo="false" cairo-directfb="false" cairo-ft="false" cairo-pdf="false" cairo-png="false" cairo-ps="false" cairo-svg="false" cairo-xcb="false" cairo-xlib="false" cairo-xlib-xrender="false" cairomm-1.0="true" cairomm-ft-1.0="false" cairomm-pdf-1.0="false" cairomm-png-1.0="false" cairomm-ps-1.0="false" cairomm-svg-1.0="false" cairomm-xlib-1.0="false" cminpack="false" com_err="false" compiz-animation="false" compiz-mousepoll="false" compiz-text="false" compizconfig-python="false" compositeproto="false" damageproto="false" dbus-python="false" direct="false" directfb="false" directfb-internal="false" dri="false" eigen3="false" f-spot="false" fixesproto="false" flann="false" fontconfig="false" fontutil="false" freetype2="false" ftgl="false" fusion="false" gdk-2.0="false" gdk-pixbuf-2.0="false" gdk-pixbuf-xlib-2.0="false" gdk-x11-2.0="false" gdkglext-1.0="false" gdkglext-x11-1.0="false" gdkmm-2.4="false" gio-2.0="false" gio-unix-2.0="false" giomm-2.4="false" gl="false" glib-2.0="false" glibmm-2.4="false" glu="false" gmodule-2.0="false" gmodule-export-2.0="false" gmodule-no-export-2.0="false" gnome-doc-utils="false" gnome-icon-theme="false" gnome-mime-data-2.0="false" gnome-screensaver="false" gnome-system-tools="false" gobject-2.0="false" gstreamer-0.10="false" gstreamer-app-0.10="true" gstreamer-audio-0.10="false" gstreamer-base-0.10="false" gstreamer-cdda-0.10="false" gstreamer-check-0.10="false" gstreamer-controller-0.10="false" gstreamer-dataprotocol-0.10="false" gstreamer-fft-0.10="false" gstreamer-floatcast-0.10="false" gstreamer-interfaces-0.10="false" gstreamer-net-0.10="false" gstreamer-netbuffer-0.10="false" gstreamer-pbutils-0.10="false" gstreamer-plugins-base-0.10="false" gstreamer-riff-0.10="false" gstreamer-rtp-0.10="false" gstreamer-rtsp-0.10="false" gstreamer-sdp-0.10="false" gstreamer-tag-0.10="false" gstreamer-video-0.10="false" gstreamermm-0.10="true" gthread-2.0="false" gtk-engines-2="false" gtkglext-1.0="false" gtkglext-x11-1.0="false" gtkmm-2.4="true" gtkplus-2.0="false" gtkplus-unix-print-2.0="false" gtkplus-x11-2.0="false" ibus-table="false" ice="false" inputproto="false" iso-codes="false" kbproto="false" libavcodec="false" libavformat="false" libavutil="false" libcrypto="false" libdrm="false" libdrm_intel="false" libdrm_nouveau="false" libdrm_radeon="false" libgdiplus="false" libpng="false" libpng12="false" libssl="false" libswscale="false" libsysfs="false" libusb-1.0="false" libxml-2.0="false" libxmlplusplus-2.6="true" m17n-db="false" mobile-broadband-provider-info="false" moduleId="packages" nautilus-sendto="false" notify-python="false" openni-dev="false" openssl="false" pango="false" pangocairo="false" pangoft2="false" pangomm-1.4="false" pangox="false" pangoxft="false" pcl_common-1.2="false" pcl_features-1.2="false" pcl_filters-1.2="false" pcl_io-1.2="false" pcl_kdtree-1.2="false" pcl_keypoints-1.2="false" pcl_octree-1.2="false" pcl_range_image-1.2="false" pcl_range_image_border_extractor-1.2="false" pcl_registration-1.2="false" pcl_sample_consensus-1.2="false" pcl_segmentation-1.2="false" pcl_surface-1.2="false" pcl_visualization-1.2="false" phonon="false" pixman-1="false" pm-utils="false" ps-engine="false" pthread-stubs="false" pygoocanvas="false" pygtksourceview-2.0="false" randrproto="false" renderproto="false" scrnsaverproto="false" shared-desktop-ontologies="false" shared-mime-info="false" sigcplusplus-2.0="false" sm="false" tomboy-addins="false" udev="false" udisks="false" usbutils="false" x11="false" xau="false" xbitmaps="false" xcb="false" xcb-render="false" xcb-renderutil="false" xcomposite="false" xcursor="false" xdamage="false" xdmcp="false" xext="false" xextproto="false" xfixes="false" xft="false" xi="false" xinerama="false" xineramaproto="false" xml2po="false" xmu="false" xorg-wacom="false" xpm="false" xproto="false" xrandr="false" xrender="false" xscrnsaver="false" xt="false" xtrans="false"/>
 		</cconfiguration>
 	</storageModule>
 	<storageModule moduleId="cdtBuildSystem" version="4.0.0">

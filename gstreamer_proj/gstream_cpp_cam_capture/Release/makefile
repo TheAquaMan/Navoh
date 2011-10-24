@@ -43,7 +43,7 @@ all: Gtkmm_HelloWorld_Cam
 Gtkmm_HelloWorld_Cam: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C++ Linker'
-	g++ $(shell pkg-config gtkmm-2.4 gstreamermm-0.10 gstreamer-app-0.10 --libs) -o "Gtkmm_HelloWorld_Cam" $(OBJS) $(USER_OBJS) $(LIBS)
+	g++  -o "Gtkmm_HelloWorld_Cam" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 

@@ -15,6 +15,7 @@
 #include <gdkmm/pixbuf.h>
 #include <gtkmm/box.h>
 #include <pangomm.h>
+#include <libxml++/libxml++.h>
 #include <cairomm/cairomm.h>
 #include <gstreamermm.h>
 #include "GstVideoClient.h"
@@ -25,17 +26,101 @@
 #include <boost/bind.hpp>
 #include <boost/function.hpp>
 #include <boost/lexical_cast.hpp>
+#include <boost/asio.hpp>
+#include <boost/thread.hpp>
 #include "math.h"
 using namespace std;
 using namespace boost;
 
+boost::mutex mut;
 
-/*
-*   Class for distance measurin and orientation
-*	TODO: replace it to the place you love
-*/
+struct DetectedBarcode
+{
+	string m_Message;
+	string m_Direction;
+	double m_Distance;
+public:
+	DetectedBarcode(){}
+	DetectedBarcode(string inMessage, string inDirection, double inDistance) :
+		m_Message(inMessage), m_Direction(inDirection), m_Distance(inDistance) {}
+	void toXML(xmlpp::Element* root);
+	void fromXML(xmlpp::Element* root);
 
-class DataMtxPlace
+	friend ostream& operator<<(ostream& o, DetectedBarcode& inObj)
+	{
+		o << "Message: " << inObj.m_Message
+				<< "\nDirection: " << inObj.m_Direction
+				<< "\nDistance: " << inObj.m_Distance << endl;
+		return o;
+	}
+};
+
+
+void DetectedBarcode::toXML(xmlpp::Element* root)
+{
+	using namespace xmlpp;
+
+	Element* element = root->add_child("Object");
+	//element->set_attribute("attribute", "value");
+
+	Element* message = element->add_child("message");
+	message->add_child_text(m_Message);
+
+	Element* direction = element->add_child("direction");
+	direction->add_child_text(m_Direction);
+
+	Element* distance = element->add_child("distance");
+	distance->add_child_text(boost::lexical_cast<string>(m_Distance));
+}
+
+void DetectedBarcode::fromXML(xmlpp::Element* root)
+{
+	using namespace xmlpp;
+
+	Element* message = dynamic_cast<Element*>(root->get_children("message").front());
+	m_Message = message->get_child_text()->get_content();
+
+	Element* direction = dynamic_cast<Element*>(root->get_children("direction").front());
+	m_Direction = direction->get_child_text()->get_content();
+
+	Element* distance = dynamic_cast<Element*>(root->get_children("distance").front());
+	m_Distance = boost::lexical_cast<double>(distance->get_child_text()->get_content());
+}
+
+void listDetectedBarcodesToXML(xmlpp::Element* root, vector<DetectedBarcode>& list)
+{
+	for (vector<DetectedBarcode>::iterator it = list.begin();
+			it != list.end();
+			++it)
+	{
+		it->toXML(root);
+	}
+}
+
+void listDetectedBarcodesFromXML(xmlpp::Element* root, vector<DetectedBarcode>& list)
+{
+	using namespace xmlpp;
+
+
+	if (root->get_name() != "ObjectList")
+	{
+		cerr << "Bad document content type: ObjectList expected" << endl;
+		return;
+	}
+
+	Node::NodeList element_list = root->get_children("Object");
+
+	for (Node::NodeList::iterator it = element_list.begin();
+			it != element_list.end();
+			++it)
+	{
+		DetectedBarcode obj;
+		obj.fromXML(dynamic_cast<Element*>(*it));
+		list.push_back(obj);
+	}
+}
+
+class BarcodePropertyEstimation
 {
 	int ImageWidth;
 	int ImageHeight;					//		B-----------C
@@ -43,7 +128,7 @@ class DataMtxPlace
 	double Cx, Cy, Dx, Dy;				//      A---------- D
 
 public:
-	DataMtxPlace(int width, int height,
+	BarcodePropertyEstimation(int width, int height,
 			double inAx, double inAy,
 			double inBx, double inBy,
 			double inCx, double inCy,
@@ -76,13 +161,48 @@ public:
 		return square;
 	}
 };
+using boost::asio::ip::tcp;
+
+
+void send_to_client( string& str)
+{
+	try
+	{
+		boost::asio::io_service io_service;
+
+		tcp::acceptor acceptor(io_service, tcp::endpoint(tcp::v4(), 5001));
+
+		for (;;)
+		{
+			tcp::socket socket(io_service);
+
+			mut.lock();
+			str.clear();
+			mut.unlock();
+
+			acceptor.accept(socket);
+
+			boost::thread::yield();
+
+			mut.lock();
+			boost::asio::write(socket, boost::asio::buffer(str));
+			mut.unlock();
+		}
+	}
+	catch (std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+}
 
 class VideoWidget : public Gtk::DrawingArea
 {
 	GstVideoClient vc;
 	Glib::RefPtr<Gdk::Pixbuf> pixbuf;
-
 public:
+	string strXML;
+
+
 	VideoWidget()
 	{
 		vc.Init();
@@ -90,6 +210,7 @@ public:
 		vc.get_frame(pixbuf);
 		set_size_request(pixbuf->get_width(), pixbuf->get_height());
 	}
+
 	virtual ~VideoWidget(){}
 
 	virtual bool on_expose_event(GdkEventExpose* )
@@ -98,13 +219,14 @@ public:
 
 		vc.get_frame(pixbuf);
 
-		drawable->draw_pixbuf(get_style()->get_bg_gc(Gtk::STATE_NORMAL), pixbuf,
+		drawable->draw_pixbuf(get_style()->get_bg_gc(Gtk::STATE_NORMAL),
+				pixbuf->scale_simple(get_width(), get_height(), Gdk::INTERP_BILINEAR),
 				0, 0, 0, 0, -1 , -1, Gdk::RGB_DITHER_NONE, 0, 0);
 
 		Gdk::Point rect[4], barcode_center;
 		string str;
 
-		bool res = decode_barcode(pixbuf, rect, str, 500);
+		bool res = decode_barcode(pixbuf, rect, str, 100);
 
 		if (res)
 		{
@@ -113,22 +235,24 @@ public:
 			cr->set_line_width(3);
 			cr->set_source_rgb(1, 0.0, 0.0);
 
-			cr->move_to(rect[0].get_x(), rect[0].get_y());
-			cr->line_to(rect[1].get_x(), rect[1].get_y());
-			cr->line_to(rect[2].get_x(), rect[2].get_y());
-			cr->line_to(rect[3].get_x(), rect[3].get_y());
-			cr->line_to(rect[0].get_x(), rect[0].get_y());
+			cr->move_to(0,0);
+			cr->line_to(10, 10);
 			cr->stroke();
 
-			DataMtxPlace distance(get_width(), get_height(),
+			cr->move_to(rect[0].get_x(), rect[0].get_y() );
+			cr->line_to(rect[1].get_x(), rect[1].get_y() );
+			cr->line_to(rect[2].get_x(), rect[2].get_y() );
+			cr->line_to(rect[3].get_x(), rect[3].get_y() );
+			cr->line_to(rect[0].get_x(), rect[0].get_y() );
+
+			cr->stroke();
+
+			BarcodePropertyEstimation distance(get_width(), get_height(),
 					rect[0].get_x(), rect[0].get_y(),
 					rect[1].get_x(), rect[1].get_y(),
 					rect[2].get_x(), rect[2].get_y(),
 					rect[3].get_x(), rect[3].get_y());
 
-			cout << "Distance: " << distance.calcDistance() <<
-					"\tSquare: " <<  distance.calcSquare() <<
-					"\tDirection: " << distance.calcDirection() << endl;
 
 			Glib::RefPtr<Pango::Layout> pango_layout = Pango::Layout::create(cr);
 
@@ -137,9 +261,21 @@ public:
 			pango_layout->set_font_description(desc);
 			pango_layout->set_alignment(Pango::ALIGN_CENTER);
 
-			string text = "Msg: " + str + "\nDist: " +
-					lexical_cast<string>(distance.calcDistance()) + "\nDir: " +
-					lexical_cast<string>(distance.calcDirection());
+			double dir = distance.calcDirection();
+			string dir_str;
+
+			if (dir > 2.3)
+				dir_str = "right";
+			else if (dir < -2.3)
+				dir_str = "left";
+			else
+				dir_str = "front";
+
+			double dist = distance.calcDistance();
+			string text = "Object ID: " + str +
+					"\nDistance: " + lexical_cast<string>(int(dist * 100) / 100) + "." +
+					lexical_cast<string>(int(dist * 100) % 100) +
+					"\nDirection: " + dir_str;
 
 			pango_layout->set_text(text);
 
@@ -160,31 +296,27 @@ public:
 
 			const Pango::Rectangle extent = pango_layout->get_pixel_logical_extents();
 
-			cr->move_to(barcode_center.get_x() - extent.get_width() / 2,
-					barcode_center.get_y() - extent.get_height() / 2);
+			cr->move_to(get_width() - extent.get_width() - 10,
+					get_height() - extent.get_height() - 10);
 
 			pango_layout->show_in_cairo_context(cr);
 
-//			cr->set_source_rgba(0, 0, 0, 0.6);
-//
-//			int i = 0;
-//			if (center_barcode.get_x() < get_width() / 3)
-//				i = 0;
-//			else if (center_barcode.get_x() > (2 * get_width() / 3))
-//				i = 2;
-//			else
-//				i = 1;
-//
-//			cr->rectangle(i * get_width() / 3,  0, i * get_width() / 3 + get_width() / 3, get_height());
-//			cr->fill_preserve();
-		}
+			DetectedBarcode barcode(str, dir_str, distance.calcDistance());
+			vector<DetectedBarcode> vec;
+			vec.push_back(barcode);
 
-//		cr->set_source_rgba(0, 0, 0, 0.6);
-//		cr->move_to(get_width() / 3, 0);
-//		cr->line_to(get_width() / 3, get_height());
-//		cr->move_to(2 * get_width() / 3, 0);
-//		cr->line_to(2 * get_width() / 3, get_height());
-//		cr->stroke();
+			ostringstream ostr;
+			xmlpp::Document document1;
+
+			listDetectedBarcodesToXML(document1.create_root_node("ObjectList"), vec);
+
+			document1.write_to_stream(ostr, "UTF-8");
+
+			mut.lock();
+			strXML = ostr.str();
+			mut.unlock();
+
+		}
 
 		return true;
 	}
@@ -249,30 +381,27 @@ public:
 	virtual ~HelloWorld(){};
 
 protected:
-	void on_button_clicked();
 	bool on_timer_update_image();
 
 	void decode_barcode(Glib::RefPtr<Gdk::Pixbuf>& pixbuf, long timeout_msec);
-
 
 	VideoWidget m_VW;
 	Gtk::Button m_Button;
 	Gtk::VBox m_VBox;
 };
 
+
+
 HelloWorld::HelloWorld()
-	: m_Button("Refresh images")
 {
 	set_border_width(10);
 
 	Glib::RefPtr<Gdk::Pixbuf> pixbuf;
 
 	m_VBox.pack_start(m_VW);
-	m_VBox.pack_start(m_Button);
 
 	Glib::signal_timeout().connect(sigc::mem_fun(this, &HelloWorld::on_timer_update_image), 67);
-	m_Button.signal_clicked().connect(sigc::mem_fun(*this, &HelloWorld::on_button_clicked));
-
+	boost::thread thread(boost::bind(&send_to_client, ref(m_VW.strXML)));
 	add(m_VBox);
 	show_all_children();
 }
@@ -282,16 +411,14 @@ bool HelloWorld::on_timer_update_image()
     Glib::RefPtr<Gdk::Window> win = get_window();
     if (win)
     {
-        Gdk::Rectangle r(0, 0, m_VW.get_width(), m_VW.get_height());
+    	int top_x, top_y, bottom_x, bottom_y;
+
+    	m_VW.translate_coordinates(*this, 0, 0, top_x, top_y);
+    	m_VW.translate_coordinates(*this, m_VW.get_width(), m_VW.get_height(), bottom_x, bottom_y);
+        Gdk::Rectangle r(top_x, top_y, bottom_x, bottom_y);
         win->invalidate_rect(r, true);
     }
 	return true;
-}
-
-void HelloWorld::on_button_clicked()
-{
-	cout << "on_button_click" << endl;
-	cout << m_VW.get_width() << " " << m_VW.get_height() << endl;
 }
 
 int main(int argc, char **argv)

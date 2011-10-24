@@ -46,6 +46,7 @@ void GstVideoServer::Init()
 	if (!m_DeviceName.empty())
 		source->set_property("device", m_DeviceName);
 
+	//encoder->set_property("bitrate", 58720);
 	encoder->set_property("bitrate", 8388608);
 
 	rtpenc->set_property("mtu", 1400);
