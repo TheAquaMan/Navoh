@@ -235,10 +235,6 @@ public:
 			cr->set_line_width(3);
 			cr->set_source_rgb(1, 0.0, 0.0);
 
-			cr->move_to(0,0);
-			cr->line_to(10, 10);
-			cr->stroke();
-
 			cr->move_to(rect[0].get_x(), rect[0].get_y() );
 			cr->line_to(rect[1].get_x(), rect[1].get_y() );
 			cr->line_to(rect[2].get_x(), rect[2].get_y() );

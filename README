@@ -1,1 +1,13 @@
 Optic flow project in Moscow State University of aerospace technologies
+
+Project uses gstreamer library for capture video and sending it throught wi-fi and also playing voice of helper.
+
+List of required for launch libraries:
+- gstreamermm-0.10
+- gtkmm-2.4
+- libboost-system1.40.0
+
+Instruction for installation:
+apt-get install gstreamermm-0.10 gtkmm-2.4 libboost-system1.40.0 libboost-thread1.40.0
+
+
